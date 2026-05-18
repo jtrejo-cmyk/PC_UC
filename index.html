@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mastering Control: Guía de Estudio Interactiva</title>
+  <!-- Tailwind CSS para diseño moderno -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- MathJax para renderizado impecable de ecuaciones matemáticas LaTeX -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <!-- Lucide Icons para iconografía elegante -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #1e293b;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #475569;
+      border-radius: 3px;
+    }
+    /* Estilo de tarjetas en relieve */
+    .glass-card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans">
+
+  <!-- Contenedor Principal con Menú Lateral -->
+  <div class="flex min-h-screen flex-col md:flex-row">
+    
+    <!-- Sidebar de Navegación -->
+    <aside class="w-full md:w-64 bg-slate-950 border-r border-slate-800 p-6 flex flex-col justify-between md:sticky md:top-0 md:h-screen z-20">
+      <div>
+        <div class="flex items-center gap-3 mb-8">
+          <div class="p-2 bg-indigo-600 rounded-lg text-white">
+            <i data-lucide="cpu" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h1 class="font-extrabold text-lg tracking-wider text-indigo-400">CONTROL.EDU</h1>
+            <p class="text-xs text-slate-400">Guía de Estudio Avanzada</p>
+          </div>
+        </div>
+        
+        <nav class="space-y-1">
+          <p class="text-xs font-semibold text-slate-500 uppercase px-3 mb-2 tracking-wider">Conceptos y Modelos</p>
+          <a href="#intro" class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all text-sm">
+            <i data-lucide="book-open" class="w-4 h-4"></i> Introducción e Ideas Clave
+          </a>
+          <a href="#mecanicos" class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all text-sm">
+            <i data-lucide="activity" class="w-4 h-4"></i> Sistemas Mecánicos
+          </a>
+          <a href="#electricos" class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all text-sm">
+            <i data-lucide="zap" class="w-4 h-4"></i> Sistemas Eléctricos
+          </a>
+          <a href="#hidraulicos" class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all text-sm">
+            <i data-lucide="droplet" class="w-4 h-4"></i> Sistemas Hidráulicos
+          </a>
+          <a href="#termicos" class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all text-sm">
+            <i data-lucide="thermometer" class="w-4 h-4"></i> Sistemas Térmicos
+          </a>
+          
+          <p class="text-xs font-semibold text-slate-500 uppercase px-3 mt-6 mb-2 tracking-wider">Herramientas de Análisis</p>
+          <a href="#ft-bloques" class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all text-sm">
+            <i data-lucide="git-merge" class="w-4 h-4"></i> F.T. y Bloques
+          </a>
+          <a href="#cheat-sheet" class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all text-sm">
+            <i data-lucide="award" class="w-4 h-4"></i> Cheat Sheet / Resumen
+          </a>
+          <a href="#quiz" class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all text-sm">
+            <i data-lucide="help-circle" class="w-4 h-4"></i> Quiz Evaluativo
+          </a>
+          <a href="#ejercicio-maestro" class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all text-sm">
+            <i data-lucide="file-text" class="w-4 h-4"></i> Ejercicio Integrador
+          </a>
+        </nav>
+      </div>
+      <div class="pt-6 border-t border-slate-800 mt-6 md:mt-0 text-center">
+        <span class="text-xs text-slate-500 block">Desarrollado para fines académicos</span>
+      </div>
+    </aside>
+
+    <!-- Contenido Principal -->
+    <main class="flex-1 p-6 md:p-12 space-y-16 max-w-5xl overflow-y-auto">
+
+      <!-- Header de bienvenida -->
+      <header class="border-b border-slate-800 pb-8">
+        <span class="text-xs font-bold tracking-widest text-indigo-400 uppercase">Clase Magistral Interactiva</span>
+        <h1 class="text-4xl md:text-5xl font-black mt-2 tracking-tight">Modelación Matemática y Dinámica de Sistemas</h1>
+        <p class="text-slate-400 mt-3 text-lg leading-relaxed max-w-3xl">
+          Bienvenido a la herramienta definitiva de autoaprendizaje. Aquí aprenderás a traducir el comportamiento físico real de la naturaleza en ecuaciones algebraicas y bloques funcionales para diseñar sistemas automáticos eficientes.
+        </p>
+      </header>
+
+      <!-- INTRODUCCIÓN E IDEAS CLAVE -->
+      <section id="intro" class="scroll-mt-12">
+        <h2 class="text-3xl font-extrabold flex items-center gap-3 text-indigo-300 mb-6 border-b border-slate-800 pb-3">
+          <i data-lucide="book-open"></i> 1. El Arte de Controlar el Entorno
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          <div class="space-y-4">
+            <h3 class="text-xl font-bold text-slate-200">¿Qué es un Sistema de Control?</h3>
+            <p class="text-slate-300 leading-relaxed text-sm md:text-base">
+              Imagina que estás conduciendo un automóvil. Tienes un objetivo: mantener la velocidad a 100 km/h. Tus ojos miran el velocímetro (**sensor**), tu cerebro analiza si vas muy rápido o muy lento (**controlador**) y tu pie ajusta la presión sobre el pedal de aceleración (**actuador**). 
+            </p>
+            <p class="text-slate-300 leading-relaxed text-sm md:text-base">
+              Eso mismo hace la ingeniería de control de manera artificial: automatiza las variables físicas para liberar al humano de tareas monótonas y asegurar precisión.
+            </p>
+          </div>
+          <div class="p-6 bg-slate-950 rounded-xl border border-slate-800 flex flex-col justify-center">
+            <h4 class="text-sm font-semibold text-indigo-400 uppercase tracking-widest mb-3">Definiciones Fundamentales</h4>
+            <ul class="space-y-3 text-sm">
+              <li><strong class="text-white">Variable Controlada:</strong> La condición exacta que queremos vigilar y mantener estable (ej. la temperatura de una incubadora).</li>
+              <li><strong class="text-white">Variable Manipulada:</strong> El factor físico que alteramos voluntariamente para equilibrar el sistema (ej. el nivel de apertura de una válvula de gas).</li>
+              <li><strong class="text-white">Perturbación:</strong> Cualquier evento imprevisto que saca de balance la variable controlada (ej. abrir la compuerta de un horno industrial).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Lazo Abierto vs Lazo Cerrado -->
+        <h3 class="text-xl font-bold text-slate-200 mb-4">El Gran Dilema: Lazo Abierto vs. Lazo Cerrado</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-6 rounded-xl border border-rose-500/20 bg-rose-950/10 hover:bg-rose-950/20 transition-all">
+            <div class="flex items-center gap-3 text-rose-400 font-bold text-lg mb-3">
+              <i data-lucide="unlock"></i> Lazo Abierto (Open Loop)
+            </div>
+            <p class="text-sm text-slate-300 leading-relaxed mb-4">
+              La señal de salida no influye en la acción de control. El sistema no sabe (y no le importa) si se cumplió el objetivo de manera correcta.
+            </p>
+            <div class="bg-slate-950 p-4 rounded-lg text-xs font-mono text-slate-400 border border-slate-800">
+              <strong>Diagrama de Flujo:</strong><br>
+              [Entrada/Referencia] ──> [Controlador] ──> [Planta/Proceso] ──> [Salida Real]
+            </div>
+            <p class="text-xs text-rose-300/80 mt-3 italic">Ejemplo: Un tostador común que funciona por tiempo fijo, sin importar si el pan ya se quemó o sigue blanco.</p>
+          </div>
+
+          <div class="p-6 rounded-xl border border-emerald-500/20 bg-emerald-950/10 hover:bg-emerald-950/20 transition-all">
+            <div class="flex items-center gap-3 text-emerald-400 font-bold text-lg mb-3">
+              <i data-lucide="lock"></i> Lazo Cerrado (Closed Loop / Feedback)
+            </div>
+            <p class="text-sm text-slate-300 leading-relaxed mb-4">
+              La señal de salida se mide constantemente mediante sensores y se compara con la referencia, calculando un <strong>error</strong> dinámico que el sistema intentará corregir inmediatamente.
+            </p>
+            <div class="bg-slate-950 p-4 rounded-lg text-xs font-mono text-slate-400 border border-slate-800">
+              <strong>Diagrama de Flujo:</strong><br>
+              ┌─> [Punto Comparación] ──> [Controlador] ──> [Planta] ──> [Salida] ─┐<br>
+              └─────────────── [ Sensor / Medición ] <─────────────────┘
+            </div>
+            <p class="text-xs text-emerald-300/80 mt-3 italic">Ejemplo: El climatizador de un vehículo que enciende más fuerte si percibe que la cabina se calienta.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SISTEMAS MECÁNICOS -->
+      <section id="mecanicos" class="scroll-mt-12">
+        <h2 class="text-3xl font-extrabold flex items-center gap-3 text-indigo-300 mb-6 border-b border-slate-800 pb-3">
+          <i data-lucide="activity"></i> 2. Modelado de Sistemas Mecánicos
+        </h2>
+        
+        <!-- Método Feynman -->
+        <div class="p-6 bg-slate-950 rounded-xl border border-indigo-500/10 mb-8">
+          <h4 class="text-indigo-400 font-bold flex items-center gap-2 mb-2">
+            <i data-lucide="lightbulb" class="w-5 h-5"></i> Explicación Intuitiva (Feynman)
+          </h4>
+          <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+            Imagina que empujas una caja en el suelo. Para modelarla matemáticamente, solo necesitas entender a tres personajes de este drama: la <strong>masa</strong> (que lucha con pereza para no cambiar su velocidad actual), el <strong>amortiguador</strong> (la resistencia que frena el movimiento proporcionalmente a la velocidad, como arrastrar la caja por el barro) y el <strong>resorte</strong> (una banda elástica que te jala con más fuerza entre más lejos estires la caja). La suma de esas tres fuerzas siempre debe ser exactamente igual al empujón que aplicas.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Modelado Traslacional -->
+          <div class="glass-card p-6 rounded-xl">
+            <h3 class="text-xl font-bold text-indigo-200 mb-4 flex items-center gap-2">
+              <i data-lucide="arrow-right-left"></i> Movimiento de Traslación
+            </h3>
+            <p class="text-sm text-slate-300 mb-4">
+              Basado en la segunda ley de Newton: $\sum \text{Fuerzas} = m \cdot a$. Aquí el desplazamiento se denota como $x(t)$.
+            </p>
+            <div class="space-y-4 text-xs font-mono bg-slate-950 p-4 rounded-lg text-slate-400 border border-slate-800">
+              <div><strong class="text-white">Masa (m):</strong> Fuerza de inercia<br>$F_m = m \frac{d^2 x(t)}{dt^2} = m \ddot{x}$</div>
+              <div><strong class="text-white">Fricción viscosa (b):</strong> Oposición por velocidad<br>$F_b = b \frac{dx(t)}{dt} = b \dot{x}$</div>
+              <div><strong class="text-white">Elasticidad (k):</strong> Oposición por posición<br>$F_k = k \cdot x(t)$</div>
+            </div>
+            <div class="mt-4 p-4 bg-slate-900 border border-slate-800 rounded-lg">
+              <p class="text-sm text-slate-200 font-bold">Ecuación diferencial clásica:</p>
+              <p class="text-indigo-300 font-mono text-center mt-2">$$F(t) = m\ddot{x}(t) + b\dot{x}(t) + kx(t)$$</p>
+            </div>
+          </div>
+
+          <!-- Modelado Rotacional -->
+          <div class="glass-card p-6 rounded-xl">
+            <h3 class="text-xl font-bold text-indigo-200 mb-4 flex items-center gap-2">
+              <i data-lucide="rotate-cw"></i> Movimiento Rotacional
+            </h3>
+            <p class="text-sm text-slate-300 mb-4">
+              Se analiza con respecto a un eje fijo giratorio. Se aplica el par de torsión (torque) $\tau(t)$ y el desplazamiento angular $\theta(t)$.
+            </p>
+            <div class="space-y-4 text-xs font-mono bg-slate-950 p-4 rounded-lg text-slate-400 border border-slate-800">
+              <div><strong class="text-white">Momento de Inercia (J):</strong> Resistencia al giro<br>$\tau_J = J \frac{d^2 \theta(t)}{dt^2} = J \ddot{\theta}$</div>
+              <div><strong class="text-white">Fricción rotacional (b):</strong> Rozamiento viscoso<br>$\tau_b = b \frac{d\theta(t)}{dt} = b \dot{\theta}$</div>
+              <div><strong class="text-white">Resorte torsional (k):</strong> Rigidez del eje<br>$\tau_k = k \cdot \theta(t)$</div>
+            </div>
+            <div class="mt-4 p-4 bg-slate-900 border border-slate-800 rounded-lg">
+              <p class="text-sm text-slate-200 font-bold">Ecuación diferencial rotacional:</p>
+              <p class="text-indigo-300 font-mono text-center mt-2">$$\tau(t) = J\ddot{\theta}(t) + b\dot{\theta}(t) + k\theta(t)$$</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notas adicionales sobre trenes de engranajes -->
+        <div class="mt-6 p-4 bg-slate-950 rounded-lg border border-slate-800">
+          <h4 class="text-sm font-bold text-white mb-2 flex items-center gap-1">
+            <i data-lucide="settings" class="w-4 h-4"></i> Acoples Mecánicos: Engranajes y Bandas
+          </h4>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Cuando un eje rotacional interactúa con otro mediante engranajes o poleas, ocurre una transformación del torque y la velocidad. El engranaje acoplado permite modificar el momento de inercia y la fricción aparente vista desde el motor usando la relación de dientes o diámetros ($N_1/N_2$ o $D_1/D_2$).
+          </p>
+        </div>
+      </section>
+
+      <!-- SISTEMAS ELÉCTRICOS -->
+      <section id="electricos" class="scroll-mt-12">
+        <h2 class="text-3xl font-extrabold flex items-center gap-3 text-indigo-300 mb-6 border-b border-slate-800 pb-3">
+          <i data-lucide="zap"></i> 3. Modelado de Sistemas Eléctricos
+        </h2>
+
+        <!-- Método Feynman -->
+        <div class="p-6 bg-slate-950 rounded-xl border border-indigo-500/10 mb-8">
+          <h4 class="text-indigo-400 font-bold flex items-center gap-2 mb-2">
+            <i data-lucide="lightbulb" class="w-5 h-5"></i> Explicación Intuitiva (Feynman)
+          </h4>
+          <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+            Imagina que un circuito eléctrico es una tubería por la que corre agua. La **corriente** ($I$) es la cantidad de agua por segundo, y el **voltaje** ($U$) es la presión que empuja el agua. Una **resistencia** ($R$) es un estrechamiento del tubo que frena el agua disipando energía; un **capacitor** ($C$) es un tanque flexible con una membrana de goma que almacena el agua bajo presión; y una **bobina** ($L$) es una pesada turbina que se opone a cualquier cambio rápido en la velocidad del flujo de agua por pura inercia.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Leyes Físicas -->
+          <div class="glass-card p-6 rounded-xl flex flex-col justify-between">
+            <div>
+              <h3 class="text-xl font-bold text-indigo-200 mb-4">Leyes de Kirchhoff</h3>
+              <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                El modelado de circuitos electrónicos se rige por dos postulados lógicos de conservación de energía:
+              </p>
+              <ul class="space-y-3 text-sm text-slate-300">
+                <li class="flex gap-2">
+                  <span class="text-indigo-400 font-mono">1.</span> 
+                  <div><strong>Leyes de Tensiones (LVK):</strong> La suma algebraica de las caídas de tensión en cualquier trayectoria o malla cerrada es cero.</div>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-indigo-400 font-mono">2.</span> 
+                  <div><strong>Leyes de Corrientes (LCK):</strong> La suma de corrientes que entran a un nodo de unión es exactamente igual a la suma de las corrientes que salen.</div>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-6 p-4 bg-slate-950 rounded-lg text-xs border border-slate-800">
+              <span class="text-indigo-400 font-bold block mb-1">Nota del experto:</span>
+              La carga eléctrica $q(t)$ se relaciona con la corriente mediante la derivada $i(t) = \frac{dq(t)}{dt} = \dot{q}$.
+            </div>
+          </div>
+
+          <!-- Componentes y su matemática -->
+          <div class="glass-card p-6 rounded-xl">
+            <h3 class="text-xl font-bold text-indigo-200 mb-4">Componentes RLC</h3>
+            <div class="space-y-4">
+              <div class="p-3 bg-slate-950 rounded-lg border border-slate-800 flex justify-between items-center">
+                <div>
+                  <span class="font-bold text-white text-sm block">Resistencia (R)</span>
+                  <span class="text-xs text-slate-400">Voltaje proporcional a la corriente</span>
+                </div>
+                <span class="text-indigo-300 font-mono text-sm">$$U_R = R \cdot i$$</span>
+              </div>
+
+              <div class="p-3 bg-slate-950 rounded-lg border border-slate-800 flex justify-between items-center">
+                <div>
+                  <span class="font-bold text-white text-sm block">Bobina / Inductor (L)</span>
+                  <span class="text-xs text-slate-400">Voltaje proporcional al cambio de corriente</span>
+                </div>
+                <span class="text-indigo-300 font-mono text-sm">$$U_L = L \frac{di}{dt}$$</span>
+              </div>
+
+              <div class="p-3 bg-slate-950 rounded-lg border border-slate-800 flex justify-between items-center">
+                <div>
+                  <span class="font-bold text-white text-sm block">Capacitor / Condensador (C)</span>
+                  <span class="text-xs text-slate-400">Voltaje acumulativo proporcional a la carga</span>
+                </div>
+                <span class="text-indigo-300 font-mono text-sm">$$U_C = \frac{1}{C} \int i \, dt$$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SISTEMAS HIDRÁULICOS -->
+      <section id="hidraulicos" class="scroll-mt-12">
+        <h2 class="text-3xl font-extrabold flex items-center gap-3 text-indigo-300 mb-6 border-b border-slate-800 pb-3">
+          <i data-lucide="droplet"></i> 4. Modelado de Sistemas Hidráulicos (Nivel de Líquidos)
+        </h2>
+
+        <!-- Método Feynman -->
+        <div class="p-6 bg-slate-950 rounded-xl border border-indigo-500/10 mb-8">
+          <h4 class="text-indigo-400 font-bold flex items-center gap-2 mb-2">
+            <i data-lucide="lightbulb" class="w-5 h-5"></i> Explicación Intuitiva (Feynman)
+          </h4>
+          <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+            Imagina una bañera con el grifo abierto y el desagüe destapado. Si dejas entrar más agua de la que puede salir, el nivel del agua ($h$) subirá. El tanque almacena líquido de forma proporcional a su área transversal o **capacidad** ($C$), y el desagüe tiene un estrechamiento (válvula) que opone una **resistencia hidráulica** ($R$). La velocidad con la que cambia la altura del agua depende de cuánta agua entra versus cuánta agua permites que se escape.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Ecuaciones del modelo fluido -->
+          <div class="glass-card p-6 rounded-xl">
+            <h3 class="text-xl font-bold text-indigo-200 mb-4">Modelado Matemático Laminar</h3>
+            <p class="text-sm text-slate-300 leading-relaxed mb-4">
+              En condiciones de flujo laminar, el caudal de salida es lineal respecto a la altura del nivel del líquido:
+            </p>
+            <div class="space-y-4 font-mono text-xs text-slate-300">
+              <div class="p-3 bg-slate-950 rounded-lg border border-slate-800">
+                <strong class="text-white">1. Ecuación de Balance de Masas (Conservación de Caudal):</strong>
+                <p class="mt-1 text-indigo-300 text-sm">$$q_i(t) - q_o(t) = C \frac{dh(t)}{dt}$$</p>
+                <span class="text-slate-500">Donde $q_i$ es flujo de entrada, $q_o$ es flujo de salida y $h(t)$ es la altura.</span>
+              </div>
+              <div class="p-3 bg-slate-950 rounded-lg border border-slate-800">
+                <strong class="text-white">2. Relación con la Resistencia de Válvula ($R$):</strong>
+                <p class="mt-1 text-indigo-300 text-sm">$$q_o(t) = \frac{h(t)}{R}$$</p>
+                <span class="text-slate-500">El caudal que drena es directamente proporcional a la presión del nivel hidráulico.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- F.T. resultante -->
+          <div class="glass-card p-6 rounded-xl flex flex-col justify-between">
+            <div>
+              <h3 class="text-xl font-bold text-indigo-200 mb-4">Función de Transferencia del Nivel</h3>
+              <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                Sustituyendo la ecuación (2) en la (1) obtenemos una ecuación diferencial lineal de primer orden:
+                $$q_i(t) - \frac{h(t)}{R} = C \frac{dh(t)}{dt}$$
+              </p>
+              <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                Aplicando la Transformada de Laplace con condiciones iniciales iguales a cero:
+                $$Q_i(s) = H(s) \left( C \cdot s + \frac{1}{R} \right)$$
+              </p>
+            </div>
+            <div class="p-4 bg-indigo-950/30 border border-indigo-500/20 rounded-lg text-center">
+              <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">Función de transferencia final:</span>
+              <p class="text-xl font-mono font-bold mt-1 text-indigo-200">$$\frac{H(s)}{Q_i(s)} = \frac{R}{R \cdot C \cdot s + 1}$$</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SISTEMAS TÉRMICOS -->
+      <section id="termicos" class="scroll-mt-12">
+        <h2 class="text-3xl font-extrabold flex items-center gap-3 text-indigo-300 mb-6 border-b border-slate-800 pb-3">
+          <i data-lucide="thermometer"></i> 5. Modelado de Sistemas Térmicos
+        </h2>
+
+        <!-- Método Feynman -->
+        <div class="p-6 bg-slate-950 rounded-xl border border-indigo-500/10 mb-8">
+          <h4 class="text-indigo-400 font-bold flex items-center gap-2 mb-2">
+            <i data-lucide="lightbulb" class="w-5 h-5"></i> Explicación Intuitiva (Feynman)
+          </h4>
+          <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+            Imagina que tienes una taza de café caliente sobre tu mesa de noche. El café irá perdiendo calor de forma proporcional a la diferencia de temperatura que tenga con la habitación. La capacidad del líquido para almacenar este calor antes de enfriarse se conoce como **Capacidad Térmica** ($C$), mientras que el espesor y material de la taza ofrecen una **Resistencia Térmica** ($R$) que evita que el calor escape de inmediato.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Teoría térmica -->
+          <div class="glass-card p-6 rounded-xl">
+            <h3 class="text-xl font-bold text-indigo-200 mb-4">Principios de Transferencia de Calor</h3>
+            <p class="text-sm text-slate-300 leading-relaxed mb-3">
+              En estos sistemas, las señales que nos interesan son el **Flujo de Calor** ($q$, en Joules/seg o Watts) y la **Temperatura** ($\theta$, en Kelvin o °C).
+            </p>
+            <div class="space-y-3 font-mono text-xs">
+              <div class="p-3 bg-slate-950 rounded-lg border border-slate-800">
+                <strong class="text-white">Resistencia Térmica ($R$):</strong>
+                <p class="mt-1 text-indigo-300 text-sm">$$R = \frac{\Delta \theta}{q}$$</p>
+                <span class="text-slate-500">Dificultad de los materiales para conducir el flujo calórico.</span>
+              </div>
+              <div class="p-3 bg-slate-950 rounded-lg border border-slate-800">
+                <strong class="text-white">Capacitancia Térmica ($C$):</strong>
+                <p class="mt-1 text-indigo-300 text-sm">$$C = M \cdot c_p$$</p>
+                <span class="text-slate-500">Masa por calor específico. Define cuánta energía térmica retiene el cuerpo.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modelo Matemático del Sistema Térmico -->
+          <div class="glass-card p-6 rounded-xl flex flex-col justify-between">
+            <div>
+              <h3 class="text-xl font-bold text-indigo-200 mb-4">Ecuación de Dinámica Térmica</h3>
+              <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                El flujo de calor neto almacenado por un cuerpo que experimenta transferencia calórica es:
+                $$q(t) = C \frac{d\theta_1(t)}{dt}$$
+              </p>
+              <p class="text-sm text-slate-300 leading-relaxed">
+                Si el calor fluye hacia el medio ambiente (temperatura ambiente $\theta_a$) a través de un aislamiento con resistencia $R$:
+                $$q(t) = \frac{\theta_1(t) - \theta_a(t)}{R}$$
+              </p>
+            </div>
+            <div class="p-4 bg-indigo-950/30 border border-indigo-500/20 rounded-lg text-center">
+              <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">Ecuación Diferencial Térmica de Primer Orden:</span>
+              <p class="text-lg font-mono font-bold mt-1 text-indigo-200">$$R \cdot C \frac{d\theta_1(t)}{dt} + \theta_1(t) = R \cdot q_{entrada}(t) + \theta_a(t)$$</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- F.T. Y BLOQUES -->
+      <section id="ft-bloques" class="scroll-mt-12">
+        <h2 class="text-3xl font-extrabold flex items-center gap-3 text-indigo-300 mb-6 border-b border-slate-800 pb-3">
+          <i data-lucide="git-merge"></i> 6. Funciones de Transferencia y Diagramas de Bloques
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div class="p-5 bg-slate-950 rounded-xl border border-slate-800">
+            <h4 class="font-bold text-white mb-2 text-sm flex items-center gap-1 text-indigo-400">
+              <i data-lucide="percent" class="w-4 h-4"></i> ¿Qué es la F.T.?
+            </h4>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Es el cociente de la transformada de Laplace de la variable de salida entre la de entrada, asumiendo condiciones iniciales nulas:
+              $$G(s) = \frac{Y(s)}{X(s)} \bigg|_{cond.\,inic. = 0}$$
+            </p>
+          </div>
+          <div class="p-5 bg-slate-950 rounded-xl border border-slate-800">
+            <h4 class="font-bold text-white mb-2 text-sm flex items-center gap-1 text-indigo-400">
+              <i data-lucide="shuffle" class="w-4 h-4"></i> El Punto de Suma
+            </h4>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Dispositivo gráfico donde convergen dos o más señales sumándose o restándose. ¡Muy importante! Para sumarse o restarse en este punto, todas las señales físicas deben tener exactamente las mismas dimensiones y unidades físicas.
+            </p>
+          </div>
+          <div class="p-5 bg-slate-950 rounded-xl border border-slate-800">
+            <h4 class="font-bold text-white mb-2 text-sm flex items-center gap-1 text-indigo-400">
+              <i data-lucide="repeat" class="w-4 h-4"></i> Lazo de Realimentación
+            </h4>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              El lazo cerrado estándar con ganancia directa $G(s)$ y ganancia de retroalimentación $H(s)$ se simplifica usando la siguiente fórmula:
+              $$T(s) = \frac{G(s)}{1 \pm G(s)H(s)}$$
+              El signo inferior es opuesto al signo del sumador del retorno.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tabla Reglas de Reducción -->
+        <h3 class="text-xl font-bold text-indigo-200 mb-4">Reglas de Simplificación de Diagramas de Bloques</h3>
+        <div class="overflow-x-auto bg-slate-950 rounded-xl border border-slate-800">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-slate-900 text-slate-400 text-xs uppercase tracking-wider border-b border-slate-800">
+              <tr>
+                <th class="p-4">Regla / Tipo de Conexión</th>
+                <th class="p-4">Configuración Original</th>
+                <th class="p-4">Simplificación Equivalente</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 text-slate-300">
+              <tr>
+                <td class="p-4 font-bold text-white">Bloques en Serie</td>
+                <td class="p-4">$$X \rightarrow [G_1(s)] \rightarrow [G_2(s)] \rightarrow Y$$</td>
+                <td class="p-4 text-indigo-300">$$Y(s) = G_1(s) \cdot G_2(s) \cdot X(s)$$</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-bold text-white">Bloques en Paralelo</td>
+                <td class="p-4">Dos caminos sumados simultáneamente</td>
+                <td class="p-4 text-indigo-300">$$Y(s) = (G_1(s) \pm G_2(s)) \cdot X(s)$$</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-bold text-white">Lazo Cerrado de Retroalimentación</td>
+                <td class="p-4">Lazo cerrado típico con retorno $H(s)$</td>
+                <td class="p-4 text-indigo-300">$$T(s) = \frac{G(s)}{1 + G(s)H(s)} \quad \text{(Retorno Negativo)}$$</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-bold text-white">Mover un Bloque Antes del Sumador</td>
+                <td class="p-4">Bloque $G(s)$ después del sumador</td>
+                <td class="p-4 text-indigo-300">Multiplicar por $G(s)$ el resto de las señales de entrada</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-bold text-white">Mover un Bloque Después del Sumador</td>
+                <td class="p-4">Bloque $G(s)$ antes del sumador</td>
+                <td class="p-4 text-indigo-300">Multiplicar por $\frac{1}{G(s)}$ la otra rama del sumador</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- CHEAT SHEET -->
+      <section id="cheat-sheet" class="scroll-mt-12">
+        <h2 class="text-3xl font-extrabold flex items-center gap-3 text-indigo-300 mb-6 border-b border-slate-800 pb-3">
+          <i data-lucide="award"></i> 7. Cheat Sheet / Hoja de Referencia Rápida
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Tabla de Equivalencias de Sistemas Físicos -->
+          <div class="glass-card p-6 rounded-xl border border-indigo-500/10">
+            <h3 class="text-lg font-bold text-indigo-400 mb-4 flex items-center gap-2">
+              <i data-lucide="link"></i> Analogías del Universo Físico
+            </h3>
+            <p class="text-xs text-slate-400 mb-4">Esta tabla resume cómo mundos mecánicos y eléctricos comparten idéntico modelado matemático.</p>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-slate-900 text-slate-400 uppercase tracking-widest border-b border-slate-800">
+                  <tr>
+                    <th class="p-3">Mundo Mecánico (Translacional / Rotacional)</th>
+                    <th class="p-3">Mundo Eléctrico Análogo</th>
+                    <th class="p-3">Elemento Físico y Unidad</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-800 text-slate-300">
+                  <tr>
+                    <td class="p-3 font-semibold text-white">Fuerza $F$ / Torque $\tau$</td>
+                    <td class="p-3 font-semibold text-white">Tensión / Voltaje $U(t)$</td>
+                    <td class="p-3 text-indigo-300">Causa / Excitación ($V$, $N$, $N \cdot m$)</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3">Masa $m$ / Inercia $J$</td>
+                    <td class="p-3">Inducción / Bobina $L$</td>
+                    <td class="p-3 text-indigo-300">Almacén energía cinética ($kg$, $H$)</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3">Amortiguador $b$</td>
+                    <td class="p-3">Resistencia $R$</td>
+                    <td class="p-3 text-indigo-300">Disipador calórico ($\Omega$, $N \cdot s/m$)</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3">Resorte $k$</td>
+                    <td class="p-3">Inversa del capacitor $1/C$</td>
+                    <td class="p-3 text-indigo-300">Almacén energía potencial ($F^{-1}$, $N/m$)</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3">Velocidad $v(t)$ / $\omega(t)$</td>
+                    <td class="p-3">Corriente Eléctrica $i(t)$</td>
+                    <td class="p-3 text-indigo-300">Flujo instantáneo ($A$, $m/s$)</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3">Posición $x(t)$ / Ángulo $\theta(t)$</td>
+                    <td class="p-3">Carga Eléctrica $q(t)$</td>
+                    <td class="p-3 text-indigo-300">Estado de acumulación ($C$, $m$, $rad$)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Tabla de Resistencia/Capacitancia Hidráulica y Térmica -->
+          <div class="glass-card p-6 rounded-xl border border-indigo-500/10 flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-indigo-400 mb-4 flex items-center gap-2">
+                <i data-lucide="database"></i> Parámetros de Procesos de Fluidos y Térmicos
+              </h3>
+              <p class="text-xs text-slate-400 mb-4">Ecuaciones resumidas para modelado de procesos industriales comunes.</p>
+              <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs">
+                  <thead class="bg-slate-900 text-slate-400 uppercase tracking-widest border-b border-slate-800">
+                    <tr>
+                      <th class="p-3">Parámetro / Definición</th>
+                      <th class="p-3">Sistemas Hidráulicos (Fluidos)</th>
+                      <th class="p-3">Sistemas Térmicos (Calor)</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-800 text-slate-300">
+                    <tr>
+                      <td class="p-3 font-semibold text-white">Resistencia ($R$)</td>
+                      <td class="p-3">$$R_h = \frac{h}{q}$$ <span class="text-slate-500">(Nivel / Flujo)</span></td>
+                      <td class="p-3">$$R_t = \frac{\Delta \theta}{q}$$ <span class="text-slate-500">(Temp / Flujo Calor)</span></td>
+                    </tr>
+                    <tr>
+                      <td class="p-3 font-semibold text-white">Capacitancia ($C$)</td>
+                      <td class="p-3">$$C_h = A_{tanque}$$ <span class="text-slate-500">(Área transversal)</span></td>
+                      <td class="p-3">$$C_t = M \cdot c_p$$ <span class="text-slate-500">(Masa por calor espec.)</span></td>
+                    </tr>
+                    <tr>
+                      <td class="p-3 font-semibold text-white">Ecuación de Carga</td>
+                      <td class="p-3">$$q_i - q_o = C_h \frac{dh}{dt}$$</td>
+                      <td class="p-3">$$q_{neto} = C_t \frac{d\theta}{dt}$$</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="mt-6 p-4 bg-slate-950 rounded-lg text-[11px] text-slate-400 border border-slate-800">
+              <strong class="text-indigo-400 block mb-1">Recuerda:</strong> 
+              En sistemas mecánicos, los engranajes o poleas introducen relaciones de transformación que multiplican los torques y dividen los desplazamientos en base a las relaciones de dientes ($N_1 / N_2$).
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ INTERACTIVO -->
+      <section id="quiz" class="scroll-mt-12">
+        <h2 class="text-3xl font-extrabold flex items-center gap-3 text-indigo-300 mb-6 border-b border-slate-800 pb-3">
+          <i data-lucide="help-circle"></i> 8. Quiz de Autoevaluación Interactiva
+        </h2>
+        <p class="text-sm text-slate-400 mb-6">Ponte a prueba con este breve examen para verificar que has consolidado los conocimientos clave de la guía de control.</p>
+        
+        <div class="bg-slate-950 rounded-2xl border border-slate-800 p-6 md:p-8 space-y-8">
+          <div id="quiz-container">
+            <!-- Cuestiones renderizadas dinámicamente con JS -->
+          </div>
+          <div class="flex justify-between items-center border-t border-slate-800 pt-6">
+            <span class="text-sm text-slate-400" id="quiz-progress">Pregunta 1 de 5</span>
+            <button id="btn-next-quiz" onclick="nextQuestion()" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-lg transition-all text-sm flex items-center gap-2 shadow-lg shadow-indigo-500/20">
+              Siguiente Pregunta <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- EJERCICIO MAESTRO -->
+      <section id="ejercicio-maestro" class="scroll-mt-12">
+        <h2 class="text-3xl font-extrabold flex items-center gap-3 text-indigo-300 mb-6 border-b border-slate-800 pb-3">
+          <i data-lucide="file-text"></i> 9. El Gran Cierre: Ejercicio Maestro Paso a Paso
+        </h2>
+        
+        <div class="space-y-8">
+          <div class="p-6 bg-indigo-950/20 border border-indigo-500/20 rounded-2xl">
+            <h3 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+              <span class="px-2.5 py-0.5 bg-indigo-600 rounded-full text-xs">RETO INTEGRAL</span>
+              Modelado de un Motor de Corriente Continua (MCC) con Excitación Independiente
+            </h3>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              El motor de Corriente Continua (C.C.) es la muestra de ingeniería ideal para integrar todo lo aprendido ya que une el mundo eléctrico (bobinado de armadura) con el mundo mecánico (movimiento giratorio del rotor). 
+            </p>
+          </div>
+
+          <!-- Pasos del Ejercicio -->
+          <div class="relative pl-8 border-l-2 border-indigo-800 space-y-12">
+            
+            <!-- Paso A -->
+            <div class="relative">
+              <div class="absolute -left-[41px] top-0 bg-slate-900 border-2 border-indigo-500 p-1.5 rounded-full text-indigo-400">
+                <i data-lucide="target" class="w-5 h-5"></i>
+              </div>
+              <h4 class="text-lg font-bold text-white mb-3">Paso A: Planteamiento y Diagrama del Sistema</h4>
+              <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                El sistema consta de dos circuitos galvánicamente independientes: el circuito de excitación (estator) que genera un flujo magnético $\psi_e$, y el circuito de armadura (rotor) donde circula una corriente $I_a(t)$ bajo una tensión de entrada $V_a(t)$. El rotor tiene momento de inercia $J$ y fricción viscosa de rodamiento $b$.
+              </p>
+              
+              <!-- Representación Esquemática por ASCII / SVG -->
+              <div class="p-6 bg-slate-950 rounded-xl border border-slate-800 font-mono text-xs text-slate-400 overflow-x-auto space-y-4">
+                <p class="text-indigo-400 font-bold">ESQUEMA FÍSICO DEL MOTOR (CIRCUITO DE ARMADURA Y ROTOR):</p>
+                <div>
+                  + Va(t) ───[ Resistencia Ra ]───[ Bobina La ]─── ( Rotor: Motor M ) ─── -
+                                                                        │
+                                                                        ├─── Torque Eléctrico (Te) ───> [ Inercia J, Amort. b ]
+                                                                        └─── Fuerza Contraelectromotriz (Vb) <─── (Generada por giro de velocidad angular ω)
+                </div>
+              </div>
+            </div>
+
+            <!-- Paso B -->
+            <div class="relative">
+              <div class="absolute -left-[41px] top-0 bg-slate-900 border-2 border-indigo-500 p-1.5 rounded-full text-indigo-400">
+                <i data-lucide="edit-3" class="w-5 h-5"></i>
+              </div>
+              <h4 class="text-lg font-bold text-white mb-3">Paso B: Ecuaciones Diferenciales y Modelado de Conversión</h4>
+              <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                La interacción física electro-mecánica se rige por las siguientes ecuaciones fundamentales:
+              </p>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                <div class="p-4 bg-slate-950 rounded-xl border border-slate-800">
+                  <span class="font-bold text-white block mb-2 text-indigo-400">1. Lazo Eléctrico de Armadura (LVK)</span>
+                  <p class="text-indigo-200 font-mono">$$V_a(t) = R_a I_a(t) + L_a \frac{d I_a(t)}{dt} + V_b(t)$$</p>
+                  <p class="text-xs text-slate-400 mt-2">
+                    Donde $V_b(t)$ es la Fuerza Contraelectromotriz que se opone al voltaje de entrada y es directamente proporcional a la velocidad de rotación angular $\omega(t)$:
+                    $$V_b(t) = K_e \cdot \omega(t)$$
+                  </p>
+                </div>
+
+                <div class="p-4 bg-slate-950 rounded-xl border border-slate-800">
+                  <span class="font-bold text-white block mb-2 text-indigo-400">2. Lazo Mecánico de Rotación</span>
+                  <p class="text-indigo-200 font-mono">$$\tau_e(t) = J \frac{d\omega(t)}{dt} + b \cdot \omega(t)$$</p>
+                  <p class="text-xs text-slate-400 mt-2">
+                    Donde $\tau_e(t)$ es el torque eléctrico del motor que arrastra el eje mecánico del rotor y es proporcional a la corriente de armadura $I_a$:
+                    $$\tau_e(t) = K_m \cdot I_a(t)$$
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Paso C -->
+            <div class="relative">
+              <div class="absolute -left-[41px] top-0 bg-slate-900 border-2 border-indigo-500 p-1.5 rounded-full text-indigo-400">
+                <i data-lucide="variable" class="w-5 h-5"></i>
+              </div>
+              <h4 class="text-lg font-bold text-white mb-3">Paso C: Transformada de Laplace y Obtención de la Función de Transferencia</h4>
+              <p class="text-sm text-slate-300 leading-relaxed mb-3">
+                Aplicando la Transformada de Laplace a las ecuaciones diferenciales, asumiendo condiciones iniciales nulas para un modelado de transferencia correcto:
+              </p>
+              <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 text-sm font-mono space-y-3">
+                <div>Ecuación Eléctrica en frecuencia (s): <span class="text-indigo-300">$$V_a(s) - V_b(s) = I_a(s)(R_a + L_a \cdot s)$$</span></div>
+                <div>Fuerza contraelectromotriz en s: <span class="text-indigo-300">$$V_b(s) = K_e \cdot \Omega(s)$$</span></div>
+                <div>Torque Motor en s: <span class="text-indigo-300">$$\tau_e(s) = K_m \cdot I_a(s)$$</span></div>
+                <div>Dinámica de Rotación en s: <span class="text-indigo-300">$$\tau_e(s) = \Omega(s)(J \cdot s + b)$$</span></div>
+              </div>
+              
+              <p class="text-sm text-slate-300 leading-relaxed my-4">
+                Sustituyendo la corriente $I_a(s) = \frac{\tau_e(s)}{K_m} = \frac{\Omega(s)(J \cdot s + b)}{K_m}$ en la ecuación de voltaje de armadura y simplificando algebraicamente, obtenemos la función de transferencia del motor en términos de la tensión de entrada contra la velocidad de rotación angular del eje:
+              </p>
+              
+              <div class="p-5 bg-indigo-950/30 border-2 border-indigo-500/20 rounded-xl text-center">
+                <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest block">FUNCIÓN DE TRANSFERENCIA DEL MOTOR MCC:</span>
+                <p class="text-2xl font-bold font-mono mt-1 text-indigo-200">$$G(s) = \frac{\Omega(s)}{V_a(s)} = \frac{K_m}{(L_a \cdot s + R_a)(J \cdot s + b) + K_m K_e}$$</p>
+              </div>
+            </div>
+
+            <!-- Paso D -->
+            <div class="relative">
+              <div class="absolute -left-[41px] top-0 bg-slate-900 border-2 border-indigo-500 p-1.5 rounded-full text-indigo-400">
+                <i data-lucide="git-branch" class="w-5 h-5"></i>
+              </div>
+              <h4 class="text-lg font-bold text-white mb-3">Paso D: Representación en Diagrama de Bloques Equivalente</h4>
+              <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                El diagrama de bloques nos ayuda a visibilizar cómo interactúa mecánicamente la corriente con la armadura. El rotor produce velocidad que a su vez realimenta de forma interna el lazo restando voltaje por efecto contraelectromotriz:
+              </p>
+              
+              <!-- Diagrama de Bloque Estructurado en ASCII -->
+              <div class="p-6 bg-slate-950 rounded-xl border border-slate-800 font-mono text-xs text-slate-400 overflow-x-auto">
+                <p class="text-indigo-400 font-bold mb-4">DIAGRAMA DE BLOQUES FUNCIONAL DEL MOTOR (LAZO REALIMENTADO INTERNO):</p>
+                <div>
+     Va(s)        E(s)            Ia(s)          Te(s)           Ω(s)
+  ───> [ O ] ─────────> [  1  ] ─────────> [ Km ] ─────────> [  1  ] ───┬───> Velocidad Angular (Salida)
+         ▲ -            [La s + Ra]                          [J s + b]   │
+         │                                                               │
+         └───────────────────────── [ Ke ] <─────────────────────────────┘
+  Fuerza Contraelectromotriz
+                </div>
+              </div>
+              <p class="text-xs text-slate-500 mt-4 italic">
+                Nota analítica: Al aplicar álgebra de bloques de realimentación unitaria en este lazo, verás que regresas exactamente a la misma ecuación simplificada que dedujiste en el paso C. ¡El modelado gráfico y el matemático nunca se contradicen!.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    // Iniciar iconos de Lucide
+    lucide.createIcons();
+
+    // Datos del Cuestionario Interactivo
+    const quizData = [
+      {
+        question: "¿Cuál es la característica principal de un Sistema de Lazo Cerrado (Closed Loop)?",
+        options: [
+          "Su señal de salida es completamente independiente de la acción de control aplicada.",
+          "Utiliza sensores para medir y realimentar la salida del sistema y calcular constantemente el error.",
+          "Requiere calibración exacta en fábrica y no puede modificarse una vez arranca.",
+          "No tiene la capacidad de mitigar las perturbaciones inesperadas."
+        ],
+        answer: 1,
+        explanation: "Correcto. El lazo cerrado monitorea constantemente la salida mediante sensores de realimentación para corregir cualquier perturbación externa que afecte el sistema."
+      },
+      {
+        question: "En un sistema mecánico traslacional de masa-resorte-amortiguador, ¿cuál es el análogo eléctrico de la masa?",
+        options: [
+          "La Resistencia Eléctrica (R)",
+          "El Condensador o Capacitor (C)",
+          "La Bobina o Inductor (L)",
+          "La Fuente de Voltaje de corriente alterna (V)"
+        ],
+        answer: 2,
+        explanation: "Correcto. El inductor almacena corriente en forma de campo magnético y se opone al cambio dinámico de la corriente, actuando igual que la masa mecánica que se opone al cambio de velocidad por inercia."
+      },
+      {
+        question: "¿Cuál de las siguientes definiciones describe correctamente la Función de Transferencia (F.T.)?",
+        options: [
+          "La suma entre las ecuaciones de entrada y salida de un sistema con condiciones iniciales cualesquiera.",
+          "El cociente de la transformada de Laplace de la salida entre la transformada de Laplace de la entrada, considerando condiciones iniciales nulas.",
+          "La relación lineal entre una fuerza y la velocidad rotacional de un engrane en un punto de suma.",
+          "La integral en el tiempo que modela el rozamiento en los sistemas térmicos."
+        ],
+        answer: 1,
+        explanation: "Correcto. Por definición, la Función de Transferencia requiere obligatoriamente que las condiciones iniciales de energía del sistema estén completamente en cero."
+      },
+      {
+        question: "En un sistema hidráulico de nivel de tanque, ¿qué representa físicamente el parámetro C (Capacitancia)?",
+        options: [
+          "El rozamiento de las paredes de la válvula reguladora de salida.",
+          "El área transversal del tanque de almacenamiento de agua.",
+          "La viscosidad específica del fluido en condiciones de flujo turbulento.",
+          "La resistencia que ofrece el grifo al flujo de entrada."
+        ],
+        answer: 1,
+        explanation: "Correcto. La capacitancia hidráulica de un tanque de paredes verticales es simplemente el área de su sección transversal ($C_h = A$)."
+      },
+      {
+        question: "Al simplificar dos bloques funcionales conectados consecutivamente en Serie (G1 y G2), la función de transferencia equivalente final se calcula como:",
+        options: [
+          "La suma directa de ambos bloques: G1 + G2",
+          "La división de ambos bloques: G1 / G2",
+          "La multiplicación o producto directo de ambos bloques: G1 * G2",
+          "El lazo cerrado con signo cambiado: G1 / (1 + G1*G2)"
+        ],
+        answer: 2,
+        explanation: "Correcto. Los bloques conectados consecutivamente en serie se multiplican algebraicamente entre sí, siempre que no existan efectos de carga entre ellos."
+      }
+    ];
+
+    let currentQuestionIndex = 0;
+    let selectedOption = null;
+
+    function renderQuestion() {
+      const q = quizData[currentQuestionIndex];
+      const container = document.getElementById('quiz-container');
+      
+      container.innerHTML = `
+        <div class="space-y-4">
+          <span class="text-xs font-bold uppercase tracking-widest text-indigo-400">DESAFÍO INTELECTUAL</span>
+          <h3 class="text-lg md:text-xl font-bold text-white">${q.question}</h3>
+          
+          <div class="grid grid-cols-1 gap-3 mt-4">
+            ${q.options.map((opt, idx) => `
+              <button onclick="selectOption(${idx})" id="opt-${idx}" class="text-left p-4 rounded-xl border border-slate-800 bg-slate-900/50 hover:bg-slate-800/80 transition-all text-sm text-slate-300">
+                ${opt}
+              </button>
+            `).join('')}
+          </div>
+          
+          <div id="feedback-panel" class="hidden mt-6 p-4 rounded-xl border"></div>
+        </div>
+      `;
+      
+      document.getElementById('quiz-progress').textContent = `Pregunta ${currentQuestionIndex + 1} de ${quizData.length}`;
+      selectedOption = null;
+    }
+
+    function selectOption(index) {
+      if (selectedOption !== null) return; // Impedir múltiples selecciones consecutivas
+      selectedOption = index;
+      const q = quizData[currentQuestionIndex];
+      
+      const isCorrect = (index === q.answer);
+      const feedback = document.getElementById('feedback-panel');
+      
+      // Estilizar la opción seleccionada
+      const btn = document.getElementById(`opt-${index}`);
+      if (isCorrect) {
+        btn.classList.add('border-emerald-500', 'bg-emerald-950/20', 'text-emerald-300');
+        feedback.className = "mt-6 p-4 rounded-xl border border-emerald-500/30 bg-emerald-950/20 text-emerald-300 text-sm";
+        feedback.innerHTML = `<strong>¡Excelente trabajo!</strong> <br> ${q.explanation}`;
+      } else {
+        btn.classList.add('border-rose-500', 'bg-rose-950/20', 'text-rose-300');
+        // Marcar también la correcta
+        const correctBtn = document.getElementById(`opt-${q.answer}`);
+        correctBtn.classList.add('border-emerald-500', 'bg-emerald-950/20', 'text-emerald-300');
+        
+        feedback.className = "mt-6 p-4 rounded-xl border border-rose-500/30 bg-rose-950/20 text-rose-300 text-sm";
+        feedback.innerHTML = `<strong>Incorrecto.</strong> Intenta repasar el concepto de nuevo. <br> <span class="text-xs text-slate-400">${q.explanation}</span>`;
+      }
+      feedback.classList.remove('hidden');
+    }
+
+    function nextQuestion() {
+      if (selectedOption === null) {
+        alert("Por favor selecciona una de las respuestas antes de continuar.");
+        return;
+      }
+      currentQuestionIndex = (currentQuestionIndex + 1) % quizData.length;
+      renderQuestion();
+    }
+
+    // Inicializar el quiz al cargar la página
+    window.addEventListener('load', () => {
+      renderQuestion();
+    });
+  </script>
+</body>
+</html>
